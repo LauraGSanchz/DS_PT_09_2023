@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a la API de Iris</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://img.freepik.com/foto-gratis/hermoso-arreglo-papel-tapiz-flores_23-2149057015.jpg?w=996&t=st=1709974665~exp=1709975265~hmac=09c19f541f6eec0c0a243724f9592fcc74346f2a6d1f5c72dd9a4b5150dccad2'); /* URL del collage de fotos de flores */
+            background-size: cover;
+            background-position: center;
+        }
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.8); /* Capa de superposición para hacer el texto más legible */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            margin: 50px auto;
+        }
+        h1, p {
+            text-align: center;
+            color: #333;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <h1>Bienvenido a la API de Iris</h1>
+        <p>Esta es la página inicial de la API de Flask sobre Iris.</p>
+        <p>¡Comienza a explorar los datos sobre Iris!</p>
+        <div class="button-container">
+            <button class="button" onclick="user()">Saludar</button>
+            <button class="button" onclick="predict()">Hacer Predicción</button>
+        </div>
+    </div>
+
+    <script>
+        function user() {
+            // Coloca aquí el código para redirigir a la página de saludo a Rodrigo
+            window.location.href = '/user/' + prompt('Ingresa tu nombre');
+        }
+
+        function predict() {
+            // Coloca aquí el código para redirigir a la página de predicción
+            window.location.href = '/predict/'
+        }
+    </script>
+</body>
+</html>
