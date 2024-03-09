@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import numpy as np
 from datetime import datetime
 
@@ -6,11 +6,14 @@ app = Flask(__name__, instance_relative_config=True)
 app.config.from_object("config")
 # app.config.from_pyfile("Data_Engineer/Flask/Teoria/config.py")
 
+
+
 @app.route('/')
 def index():
-    print('esto no funciona en la web pero si en la terminal')
-    print(app.config['BCRYPT_LOG_ROUNDS'])
-    return "<h1>Hola Solecito!</h1>"
+    return render_template('home.html')
+    # print('esto no funciona en la web pero si en la terminal')
+    # print(app.config['BCRYPT_LOG_ROUNDS'])
+    # return "<h1>Hola Solecito!</h1>"
 
 @app.route('/rodrigo')
 def index1():
