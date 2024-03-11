@@ -7,9 +7,8 @@ RUN pip install -r requirements.txt
 RUN mkdir -p app
 COPY ./App app
 
-WORKDIR app 
+WORKDIR app
 
 EXPOSE 5000
-CMD ["python3", "app.py", "--host", "0.0.0.0", "--port", "5000"]
 
-
+CMD [ "python3", "app.py"]
