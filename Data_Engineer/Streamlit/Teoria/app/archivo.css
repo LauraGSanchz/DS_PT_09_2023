@@ -1,0 +1,7 @@
+body {
+    background-image: url('e0ff972069354c04194394234338e9d0.jpg'); /* Nombre de tu imagen de fondo */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
