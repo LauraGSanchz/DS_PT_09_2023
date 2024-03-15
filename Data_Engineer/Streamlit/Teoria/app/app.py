@@ -1,5 +1,6 @@
 import streamlit as st
 
+<<<<<<< HEAD
 # Función para cargar el CSS personalizado
 def local_css(file_name):
     with open(file_name) as f:
@@ -18,3 +19,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+=======
+st.title('Hola mundo, esta es una prueba desde streamlit')
+>>>>>>> upstream/main
