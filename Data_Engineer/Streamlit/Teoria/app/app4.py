@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import streamlit as st 
-from PIL import Image
-
-image = Image.open(path)
-
-st.image(image)
-=======
 import streamlit as st
 from PIL import Image
 
@@ -14,4 +6,3 @@ image2 = Image.open(r'C:\Users\jamr1\Documents\Data_Science\GITHUB\DS_PT_09_2023
 
 st.image(image)
 st.image(image2)
->>>>>>> upstream/main

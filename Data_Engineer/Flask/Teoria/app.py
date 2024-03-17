@@ -11,11 +11,9 @@ app.config.from_object("config")
 @app.route('/')
 def index():
     return render_template('home.html')
-<<<<<<< HEAD
     # print('esto no funciona en la web pero si en la terminal')
     # print(app.config['BCRYPT_LOG_ROUNDS'])
     # return "<h1>Hola Solecito!</h1>"
-=======
 
 @app.route("/user/<name>")
 def index4(name):
@@ -29,7 +27,6 @@ def index4(name):
 def nombres():
     nombres = ['Juan', 'Ana', 'Carlos', 'María']  # Esta lista puede ser obtenida de forma dinámica
     return render_template('nombres.html', nombres=nombres)
->>>>>>> upstream/main
 
 @app.route('/rodrigo')
 def index1():

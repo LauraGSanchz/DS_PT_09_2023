@@ -1,8 +1,4 @@
 import streamlit as st
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/main
 # Write a page title
 st.title('Hello World. This is a Title')
 
@@ -18,13 +14,9 @@ st.multiselect('What are your favorite colors',
             ['Blue', 'Green']) #pre-selected
 
 # Selectbox
-<<<<<<< HEAD
-st.selectbox('Select Box',options=('Option 1', 'Option 2', 'Option 3'))
-=======
 a = st.selectbox('Select Box',options=('Option 1', 'Option 2', 'Option 3'))
 
 print(a)
->>>>>>> upstream/main
 
 # text input
 title = st.text_input('My App Text Input', 'Write Something...')

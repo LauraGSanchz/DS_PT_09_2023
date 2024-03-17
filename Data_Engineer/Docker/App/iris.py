@@ -1,4 +1,5 @@
-# Crear un modelo de ML KNN con los datos de Iris sin gridsearch
+# Crear un  with open('model.pkl', 'wb') as f:
+#     pickle.dump(KNN, f)modelo de ML KNN con los datos de Iris sin gridsearch
 
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
@@ -32,8 +33,7 @@ dic_target = {i: name for i, name in enumerate(iris['target_names'])}
 # print(classification_report(y_test, y_test_pred)) 100%
 
 
-# with open('model.pkl', 'wb') as f:
-#     pickle.dump(KNN, f)
+#
 
 # INFERENCIA
 
