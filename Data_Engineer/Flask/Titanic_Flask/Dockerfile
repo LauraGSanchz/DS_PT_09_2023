@@ -4,8 +4,8 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
-RUN mkdir -p app
-COPY ./Titanic_Flask app
+RUN mkdir -p App
+COPY ./App app
 
 WORKDIR app
 
