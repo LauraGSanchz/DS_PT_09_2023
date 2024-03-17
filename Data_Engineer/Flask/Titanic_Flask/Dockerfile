@@ -5,7 +5,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 RUN mkdir -p app
-COPY ./Titanic Flask app
+COPY ./Titanic_Flask app
 
 WORKDIR app
 
