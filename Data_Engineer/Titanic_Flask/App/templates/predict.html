@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Predicción</title>
+    <style>
+        body {
+            background-image: url('https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2016/07/titanic.jpg?tf=3840x');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: rgb(247, 243, 243);
+            text-align: center;
+            padding: 50px;
+        }
+        /* Agrega cualquier estilo adicional necesario para el formulario */
+    </style>
+</head>
+<body>
+    <h1>Formulario de Predicción</h1>
+    <form id="predictionForm">
+        <label for="is_male">¿Era hombre? 0 = no, 1=sí</label>
+        <input type="number" id="is_male" name="is_male" min="0" max="1" required><br><br>
+        <label for="Age">Edad del pasajero:</label>
+        <input type="number" id="Age" name="Age" required><br><br>
+        <label for="Fare">Valor del pasaje:</label>
+        <input type="number" id="Fare" name="Fare" required><br><br>
+        <label for="Acompaniantes">¿Viajaba con acompañantes? 0 = no, 1=sí</label>
+        <input type="number" id="Acompaniantes" name="Acompaniantes" min="0" max="1" required><br><br>
+        <label for="Pclass_1">¿Viajaba en primera clase?0 = no, 1=sí</label>
+        <input type="number" id="Pclass_1" name="Pclass_1" min="0" max="1" required><br><br>
+        <label for="Pclass_2">¿Viajaba en segunda clase?0 = no, 1=sí</label>
+        <input type="number" id="Pclass_2" name="Pclass_2" min="0" max="1" required><br><br>
+        <label for="Pclass_3">¿Viajaba en tercera clase?0 = no, 1=sí</label>
+        <input type="number" id="Pclass_3" name="Pclass_3" min="0" max="1" required><br><br>
+        <label for="Embarked_C">¿Se subió en Cherbourg?0 = no, 1=sí</label>
+        <input type="number" id="Embarked_C" name="Embarked_C" min="0" max="1" required><br><br>
+        <label for="Embarked_Q">¿Se subió en Queenstown?0 = no, 1=sí</label>
+        <input type="number" id="Embarked_Q" name="Embarked_Q" min="0" max="1" required><br><br>
+        <label for="Embarked_S">¿Se subió en Southampton?0 = no, 1=sí</label>
+        <input type="number" id="Embarked_S" name="Embarked_S" min="0" max="1" required><br><br>
+        <input type="submit" value="Hacer Predicción">
+    </form>
+    
+    <script>
+        document.getElementById("predictionForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            var object = {};
+            formData.forEach(function(value, key){
+                object[key] = value;
+            });
+            var json = JSON.stringify(object);
+
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: json
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert('La predicción es ' + data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

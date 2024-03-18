@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a la API de Iris</title>
+    <style>
+        body {
+            background-image: url('https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2016/07/titanic.jpg?tf=3840x');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: rgb(247, 243, 243);
+            text-align: center;
+            padding: 50px;
+        }
+        .texto-fondo {
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        #botonSaludar, #botonPrediccion {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #c9d9ca;
+            color: white;
+            font-size: 16px;
+        }
+        #botonSaludar:hover, #botonPrediccion:hover {
+            background-color: #727572;
+        }
+    </style>
+</head>
+<body>
+    <div class="texto-fondo">
+        <h1>Bienvenido a la API de Titanic</h1>
+        <p>¡Hola! Esta API te permite explorar el dataset Titanic y hacer predicciones sobre si un pasajero sobrevivía o no.</p>
+        <p>Selecciona una opción:</p>
+        <button id="botonSaludar" onclick="user()">Datos</button>
+        <button id="botonPrediccion" onclick="predict()">Hacer Predicción</button>
+    </div>
+    <script>
+        function user() {
+            window.location.href = '/user/' + prompt('Ingresa tu nombre');
+        }
+
+        function predict() {
+            var is_male = parseInt(prompt('¿Era hombre? 0 = no, 1 = si'));
+            var Age = parseFloat(prompt('Ingresa la edad del pasajero'));
+            var Fare = parseFloat(prompt('Ingresa el valor su pasaje'));
+            var Acompaniantes = parseFloat(prompt('¿viajaba con acompañantes? 0 = no, 1 = si'));
+            var Pclass_1 = parseInt(prompt('¿Viajaba en primera clase? 0 = no, 1 = si'));
+            var Pclass_2 = parseInt(prompt('¿Viajaba en segunda clase? 0 = no, 1 = si'))
+            var Pclass_3 = parseInt(prompt('¿Viajaba en tercera clase? 0 = no, 1 = si'))
+            var Embarked_C = prompt('¿Se subió en Cherbourg? 0 = no, 1 = si ');
+            var Embarked_Q = prompt('¿Se subió en Queenstown? 0 = no, 1 = si ');
+            var Embarked_S = prompt('¿Se subió en Southampton? 0 = no, 1 = si ');
+
+            // Realizar una solicitud POST a la ruta '/predict' de tu aplicación Flask
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ is_male: is_male, Age: Age, Fare: Fare, Acompaniantes: Acompaniantes,Pclass_1: Pclass_1, Pclass_2: Pclass_2, Pclass_3: Pclass_3, Embarked_C: Embarked_C, Embarked_Q: Embarked_Q, Embarked_S: Embarked_S })
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert('La predicción es ' + data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
