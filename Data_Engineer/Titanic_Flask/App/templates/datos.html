@@ -42,25 +42,15 @@
         }
     </style>
 </head>
+
 <body>
     <div class="texto-fondo">
         <h1>Datos del Titanic</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Columna 1</th>
-                    <th>Columna 2</th>
-                    <!-- Agrega más encabezados según tus datos -->
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Dato 1</td>
-                    <td>Dato 2</td>
-                    <!-- Agrega más filas según tus datos -->
-                </tr>
-            </tbody>
-        </table>
+        <div>
+            <img src="{{ url_for('static', filename=countplot_survived) }}" alt="Gráfico de supervivencia">
+            <img src="{{ url_for('static', filename=countplot_embarked) }}" alt="Gráfico de embarque">
+        </div>
     </div>
 </body>
 </html>
+

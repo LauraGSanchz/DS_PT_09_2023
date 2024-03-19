@@ -1,6 +1,9 @@
 from flask import Flask, request, render_template
 import pickle
 import os
+import seaborn as sns
+import pandas as pd
+
 
 os.chdir(os.path.dirname(__file__))
 print(os.getcwd())
@@ -8,17 +11,14 @@ print(os.getcwd())
 model = pickle.load(open('catbmodel.pkl', 'rb'))
 dic_target = {0: 'Murió', 1: 'Sobrevivió'}
 print(model)
+URL = 'https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv'
+df = pd.read_csv(URL, index_col='PassengerId')
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def home():
     return render_template('home.html')
-
-@app.route('/user/<name>', methods=['GET'])
-def user(name):
-    return render_template('datos.html', name=name)
-
 
 @app.route('/predict_form')
 def prediction_form():
@@ -48,6 +48,28 @@ def predict():
     return 'La predicción es {}'.format(predicted_label)
 
 
+
+@app.route('/user/<name>', methods=['GET'])
+def user(name):
+    return render_template('datos.html', name=name)
+
+@app.route('/datos')
+def mostrar_datos_titanic():
+    # Carga los datos del Titanic (asegúrate de tener el DataFrame df)
+    # Supongamos que df contiene los datos del Titanic
+
+    # Genera los gráficos utilizando Seaborn
+    countplot_survived = sns.countplot(x='Survived', data=df, stat='percent')
+    countplot_embarked = sns.countplot(x='Embarked', data=df, hue='Survived', stat='percent')
+
+    # Guarda los gráficos como imágenes en formato png
+    countplot_survived.figure.savefig('static/countplot_survived.png')
+    countplot_embarked.figure.savefig('static/countplot_embarked.png')
+
+    # Renderiza la plantilla HTML pasando los gráficos como argumentos
+    return render_template('datos.html', 
+                           countplot_survived='countplot_survived.png',
+                           countplot_embarked='countplot_embarked.png')
 # @app.route('/predict', methods=['POST'])
 # def predict():
 #     data = request.json
@@ -69,4 +91,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=False,  host='0.0.0.0', port=5000)
